@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace PryProyectoFiatSP1
+{
+    public partial class frmInicio : Form
+    {
+        public frmInicio()
+        {
+            InitializeComponent();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmLogin ventana = new frmLogin();
+            ventana.Show();
+            MessageBox.Show("Bienvenido al sistema","Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+    }
+}
