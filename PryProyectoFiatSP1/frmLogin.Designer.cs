@@ -118,6 +118,14 @@
             // cmbMódulo
             // 
             this.cmbMódulo.FormattingEnabled = true;
+            this.cmbMódulo.Items.AddRange(new object[] {
+            "ADM - Administración",
+            "",
+            "SIST - Sistemas",
+            "",
+            "COM - Compras",
+            "",
+            "VTA - Ventas"});
             this.cmbMódulo.Location = new System.Drawing.Point(144, 233);
             this.cmbMódulo.Name = "cmbMódulo";
             this.cmbMódulo.Size = new System.Drawing.Size(150, 21);
@@ -146,6 +154,7 @@
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // frmLogin
             // 
@@ -167,6 +176,7 @@
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login - Sintepart SRL";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

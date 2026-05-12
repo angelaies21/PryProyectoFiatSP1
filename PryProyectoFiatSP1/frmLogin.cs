@@ -12,6 +12,7 @@ namespace PryProyectoFiatSP1
 {
     public partial class frmLogin : Form
     {
+        
         public frmLogin()
         {
             InitializeComponent();
@@ -19,22 +20,102 @@ namespace PryProyectoFiatSP1
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (txtUsuario.Text == "")
+
+            int intentos = 0;
+            
+
+            if (txtUsuario.Text.Trim() == "")
             {
-                MessageBox.Show("Ingrese el usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese el usuario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            // Verifica que el campo contraseña esté completo
+            else if (txtContra.Text.Trim() == "")
+            {
+                MessageBox.Show("Ingrese la contraseña.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            // Verifica que el campo módulo esté completo
+            else if (cmbMódulo.Text == "")
+            {
+                MessageBox.Show("Seleccione un módulo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                if (lblContra.Text == "")
+                string usuario = txtUsuario.Text.Trim();
+                string contraseña = txtContra.Text.Trim();
+                string modulo = cmbMódulo.Text;
+
+
+
+                if (usuario == "Adm" && contraseña == "@1a" && (modulo.StartsWith("ADM") || modulo.StartsWith("COM") || modulo.StartsWith("VTA")))
                 {
-                    MessageBox.Show("Ingrese la contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    intentos = 0;
+                    this.Hide();
+                    frmBienvenida bienvenida = new frmBienvenida();
+                    bienvenida.Show();
+                }
+                else if (usuario == "John" && contraseña == "@2b" && modulo.StartsWith("SIST"))
+                {
+                    intentos = 0;
+                    this.Hide();
+                    frmBienvenida bienvenida = new frmBienvenida();
+                    bienvenida.Show();
+                }
+                else if (usuario == "Ceci" && contraseña == "@3c" && (modulo.StartsWith("ADM") || modulo.StartsWith("VTA")))
+                {
+                    intentos = 0;
+                    this.Hide();
+                    frmBienvenida bienvenida = new frmBienvenida();
+                    bienvenida.Show();
+                }
+                else if (usuario == "God" && contraseña == "@#4d")
+                {
+                    intentos = 0;
+                    this.Hide();
+                    frmBienvenida bienvenida = new frmBienvenida();
+                    bienvenida.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Ingrese el módulo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    intentos++;
+
+                    if (usuario != "Adm" && usuario != "John" && usuario != "Ceci" && usuario != "God")
+                    {
+                        MessageBox.Show("Usuario incorrecto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else if (contraseña != "@1a" && contraseña != "@2b" && contraseña != "@3c" && contraseña != "@#4d")
+                    {
+                        MessageBox.Show("Contraseña incorrecta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Módulo incorrecto para ese usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                    if (intentos >= 2)
+                    {
+                        MessageBox.Show("Sistema cerrado.", "Bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Application.Exit();
+                    }
+                    
                 }
             }
+        }
 
+        
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            // Cierra el formulario
+        this.Close();
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            cmbMódulo.Items.Clear();
+            cmbMódulo.Items.Add("ADM - Administración");
+            cmbMódulo.Items.Add("SIST - Sistemas");
+            cmbMódulo.Items.Add("COM - Compras");
+            cmbMódulo.Items.Add("VTA - Ventas");
+            cmbMódulo.SelectedIndex = 0;
         }
     }
 }
