@@ -28,28 +28,29 @@ namespace PryProyectoFiatSP1
             {
                 MessageBox.Show("Ingrese el usuario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            // Verifica que el campo contraseña esté completo
+            // Verifica que la contraseña esté completo
             else if (txtContra.Text.Trim() == "")
             {
                 MessageBox.Show("Ingrese la contraseña.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            // Verifica que el campo módulo esté completo
+            // Verifica que el módulo esté completo
             else if (cmbMódulo.Text == "")
             {
                 MessageBox.Show("Seleccione un módulo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
+                //guarda lo q escribio el usuario y el thim: saca los espacios
                 string usuario = txtUsuario.Text.Trim();
                 string contraseña = txtContra.Text.Trim();
                 string modulo = cmbMódulo.Text;
 
 
-
+                //ve q sea los datos
                 if (usuario == "Adm" && contraseña == "@1a" && (modulo.StartsWith("ADM") || modulo.StartsWith("COM") || modulo.StartsWith("VTA")))
                 {
-                    intentos = 0;
-                    this.Hide();
+                    intentos = 0;      //resetea el contador de errores
+                    this.Hide();      //oculta el formulario d login
                     frmBienvenida bienvenida = new frmBienvenida();
                     bienvenida.Show();
                 }
@@ -60,6 +61,7 @@ namespace PryProyectoFiatSP1
                     frmBienvenida bienvenida = new frmBienvenida();
                     bienvenida.Show();
                 }
+                    //solo puede entrar si 
                 else if (usuario == "Ceci" && contraseña == "@3c" && (modulo.StartsWith("ADM") || modulo.StartsWith("VTA")))
                 {
                     intentos = 0;
@@ -105,17 +107,17 @@ namespace PryProyectoFiatSP1
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             // Cierra el formulario
-        this.Close();
+        this.Close(); //cierra el formulario
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            cmbMódulo.Items.Clear();
+            cmbMódulo.Items.Clear();  //limpia las casillas
             cmbMódulo.Items.Add("ADM - Administración");
             cmbMódulo.Items.Add("SIST - Sistemas");
             cmbMódulo.Items.Add("COM - Compras");
             cmbMódulo.Items.Add("VTA - Ventas");
-            cmbMódulo.SelectedIndex = 0;
+            cmbMódulo.SelectedIndex = 0; //muestra el ADM ADMICION seleccioando caundo abre el formulario
         }
     }
 }
